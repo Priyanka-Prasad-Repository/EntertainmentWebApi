@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace EntertainmentWebApi.Migrations
 {
     /// <inheritdoc />
-    public partial class seedDataToMovieTables : Migration
+    public partial class AddingTablesSchemaAndSeedData : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -19,8 +19,8 @@ namespace EntertainmentWebApi.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    act_name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    act_gender = table.Column<string>(type: "nvarchar(2)", maxLength: 2, nullable: false)
+                    ActName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    ActGender = table.Column<string>(type: "nvarchar(2)", maxLength: 2, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -31,63 +31,63 @@ namespace EntertainmentWebApi.Migrations
                 name: "Directors",
                 columns: table => new
                 {
-                    dir_id = table.Column<int>(type: "int", nullable: false)
+                    DirId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    dir_name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false)
+                    DirName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Directors", x => x.dir_id);
+                    table.PrimaryKey("PK_Directors", x => x.DirId);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Genres",
                 columns: table => new
                 {
-                    genre_id = table.Column<int>(type: "int", nullable: false)
+                    GenreId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    genre_title = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
+                    GenreTitle = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Genres", x => x.genre_id);
+                    table.PrimaryKey("PK_Genres", x => x.GenreId);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Movies",
                 columns: table => new
                 {
-                    mov_id = table.Column<int>(type: "int", nullable: false)
+                    MovId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    mov_title = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    mov_year = table.Column<int>(type: "int", nullable: false),
-                    mov_lang = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    mov_release_country = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    mov_rel_date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    actor_id = table.Column<int>(type: "int", nullable: false),
-                    director_id = table.Column<int>(type: "int", nullable: false),
-                    genre_id = table.Column<int>(type: "int", nullable: false)
+                    MovTitle = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    MovYear = table.Column<int>(type: "int", nullable: false),
+                    MovLang = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    MovReleaseCountry = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    MovRelDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    actorId = table.Column<int>(type: "int", nullable: false),
+                    directorId = table.Column<int>(type: "int", nullable: false),
+                    GenreId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Movies", x => x.mov_id);
+                    table.PrimaryKey("PK_Movies", x => x.MovId);
                     table.ForeignKey(
-                        name: "FK_Movies_Actors_actor_id",
-                        column: x => x.actor_id,
+                        name: "FK_Movies_Actors_actorId",
+                        column: x => x.actorId,
                         principalTable: "Actors",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Movies_Directors_director_id",
-                        column: x => x.director_id,
+                        name: "FK_Movies_Directors_directorId",
+                        column: x => x.directorId,
                         principalTable: "Directors",
-                        principalColumn: "dir_id",
+                        principalColumn: "DirId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Movies_Genres_genre_id",
-                        column: x => x.genre_id,
+                        name: "FK_Movies_Genres_GenreId",
+                        column: x => x.GenreId,
                         principalTable: "Genres",
-                        principalColumn: "genre_id",
+                        principalColumn: "GenreId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -95,26 +95,26 @@ namespace EntertainmentWebApi.Migrations
                 name: "Reviews",
                 columns: table => new
                 {
-                    reviewId = table.Column<int>(type: "int", nullable: false)
+                    ReviewId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    review_Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    review_Text = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    movieId = table.Column<int>(type: "int", nullable: false)
+                    ReviewTitle = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ReviewText = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    MovieId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Reviews", x => x.reviewId);
+                    table.PrimaryKey("PK_Reviews", x => x.ReviewId);
                     table.ForeignKey(
-                        name: "FK_Reviews_Movies_movieId",
-                        column: x => x.movieId,
+                        name: "FK_Reviews_Movies_MovieId",
+                        column: x => x.MovieId,
                         principalTable: "Movies",
-                        principalColumn: "mov_id",
+                        principalColumn: "MovId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
                 table: "Actors",
-                columns: new[] { "Id", "act_gender", "act_name" },
+                columns: new[] { "Id", "ActGender", "ActName" },
                 values: new object[,]
                 {
                     { 1, "M", "Ranbir Kapoor" },
@@ -129,7 +129,7 @@ namespace EntertainmentWebApi.Migrations
 
             migrationBuilder.InsertData(
                 table: "Directors",
-                columns: new[] { "dir_id", "dir_name" },
+                columns: new[] { "DirId", "DirName" },
                 values: new object[,]
                 {
                     { 101, "Alia Bhatt" },
@@ -142,7 +142,7 @@ namespace EntertainmentWebApi.Migrations
 
             migrationBuilder.InsertData(
                 table: "Genres",
-                columns: new[] { "genre_id", "genre_title" },
+                columns: new[] { "GenreId", "GenreTitle" },
                 values: new object[,]
                 {
                     { 1001, "Horror" },
@@ -153,16 +153,16 @@ namespace EntertainmentWebApi.Migrations
 
             migrationBuilder.InsertData(
                 table: "Movies",
-                columns: new[] { "mov_id", "actor_id", "director_id", "genre_id", "mov_lang", "mov_rel_date", "mov_release_country", "mov_title", "mov_year" },
+                columns: new[] { "MovId", "GenreId", "MovLang", "MovRelDate", "MovReleaseCountry", "MovTitle", "MovYear", "actorId", "directorId" },
                 values: new object[,]
                 {
-                    { 801, 2, 101, 1002, "PAN India", new DateTime(2024, 2, 1, 21, 43, 10, 971, DateTimeKind.Local).AddTicks(1047), "Worldwide", "Brahmastra", 2024 },
-                    { 802, 5, 103, 1003, "PAN India", new DateTime(2024, 2, 1, 21, 43, 10, 971, DateTimeKind.Local).AddTicks(1059), "Worldwide", "RRR", 2024 }
+                    { 801, 1002, "PAN India", new DateTime(2024, 2, 5, 15, 31, 0, 917, DateTimeKind.Local).AddTicks(2813), "Worldwide", "Brahmastra", 2024, 2, 101 },
+                    { 802, 1003, "PAN India", new DateTime(2024, 2, 5, 15, 31, 0, 917, DateTimeKind.Local).AddTicks(2825), "Worldwide", "RRR", 2024, 5, 103 }
                 });
 
             migrationBuilder.InsertData(
                 table: "Reviews",
-                columns: new[] { "reviewId", "movieId", "review_Text", "review_Title" },
+                columns: new[] { "ReviewId", "MovieId", "ReviewText", "ReviewTitle" },
                 values: new object[,]
                 {
                     { 201, 801, "Rotten tomatotes", "1 star" },
@@ -171,24 +171,24 @@ namespace EntertainmentWebApi.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Movies_actor_id",
+                name: "IX_Movies_actorId",
                 table: "Movies",
-                column: "actor_id");
+                column: "actorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Movies_director_id",
+                name: "IX_Movies_directorId",
                 table: "Movies",
-                column: "director_id");
+                column: "directorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Movies_genre_id",
+                name: "IX_Movies_GenreId",
                 table: "Movies",
-                column: "genre_id");
+                column: "GenreId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Reviews_movieId",
+                name: "IX_Reviews_MovieId",
                 table: "Reviews",
-                column: "movieId");
+                column: "MovieId");
         }
 
         /// <inheritdoc />

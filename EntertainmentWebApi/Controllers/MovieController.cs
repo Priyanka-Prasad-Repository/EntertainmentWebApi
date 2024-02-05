@@ -13,12 +13,12 @@ namespace EntertainmentWebApi.Controllers
     public class MovieController : ControllerBase
     {
         private readonly IMovie movies;
-        private readonly ILogger<MovieController> _logger;
+        private readonly ILogger<MovieController> logger;
 
         public MovieController(IMovie movies, ILogger<MovieController> logger)
         {
             this.movies = movies;
-            this._logger = logger;
+            this.logger = logger;
         }
 
         /// <summary>
@@ -28,20 +28,23 @@ namespace EntertainmentWebApi.Controllers
         /// <returns></returns>
 
         [HttpGet("/ByActorId")]
-        public List<Movie> GetMovieListByActorId(int actorId)
+        public IActionResult GetMovieListByActorId(int actorId)
         {
             try
             {
                 var movie = movies.GetMovieListByActorId(actorId);
-                this._logger.LogInformation("Getting movie list by actor Id");
-                return movie ;
+                if(movie.Count.Equals(0))
+                {
+                    return StatusCode(404,"Actor not found");
+                }
+                this.logger.LogInformation("Getting movie list by actor Id");
+                return Ok(movie) ;
             }
             catch (Exception ex)
             {
 
-                this._logger.LogError("ex.Message");
-                //TODO:We can have a customised logger and return to the user a response code
-                return null;
+                this.logger.LogError(ex.Message);
+                return StatusCode(500,"Internal server error");
                
             }
         }
@@ -52,18 +55,23 @@ namespace EntertainmentWebApi.Controllers
         /// <returns></returns>
 
         [HttpGet("GetMovieListByGenre/{genreId}")]
-        public List<Movie> GetMovieListByGenre(int genreId)
+        public IActionResult GetMovieListByGenre(int genreId)
         {
             try
             {
-                this._logger.LogInformation("Getting movie list by genre Id");
-                return movies.GetMovieListByGenreId(genreId);
+                this.logger.LogInformation("Getting movie list by genre Id");
+                var moviesByGenre= movies.GetMovieListByGenreId(genreId);
+                if (moviesByGenre.Count.Equals(0))
+                {
+                    return StatusCode(404, "Genre not found");
+                }
+                return Ok(moviesByGenre);
             }
             catch (Exception ex)
             {
 
-                this._logger.LogError(ex.Message);
-                return null;
+                this.logger.LogError(ex.Message);
+                return StatusCode(500,"Internal server error");
             }
             
           
@@ -75,17 +83,23 @@ namespace EntertainmentWebApi.Controllers
         /// <param name="movieId"></param>
         /// <returns></returns>
         [HttpGet("")]
-        public List<Movie> GetMovieDetails()
+        public IActionResult GetMovieDetails()
         {
             try
             {
-               this._logger.LogInformation("Getting movie list by genre Id");
-                return movies.GetMovieDetails();
+                var getMovieDetails=movies.GetMovieDetails();
+                if (getMovieDetails.Count.Equals(0))
+                {
+                    return StatusCode(404, "Movie not found");
+                }
+                this.logger.LogInformation("Getting movie list by genre Id");             
+                return Ok(getMovieDetails); 
+              
             }
             catch (Exception ex)
             {
-                this._logger.LogError(ex.Message);
-                return null;
+                this.logger.LogError(ex.Message);
+                return StatusCode(500,"Internal server error");
 
             }
          

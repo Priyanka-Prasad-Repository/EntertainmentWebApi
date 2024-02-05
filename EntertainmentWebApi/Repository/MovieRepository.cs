@@ -6,7 +6,7 @@ namespace EntertainmentWebApi.Repository
     /// <summary>
     /// Repository pattern created to abstract and encapsulate the data access layer
     /// </summary>
-    public class MovieRepository : IMovie
+    public class MovieRepository : IMovie,IDisposable
     {
         private readonly ApplicationDbContext _context;
         public MovieRepository(ApplicationDbContext applicationDbContext)
@@ -22,7 +22,7 @@ namespace EntertainmentWebApi.Repository
         public List<Movie> GetMovieListByActorId(int actorId)
         {
             
-            return _context.Movies.Where(s => s.actor_id == actorId).ToList();
+            return _context.Movies.Where(s => s.actorId == actorId).ToList();
         }
        
         /// <summary>
@@ -33,7 +33,7 @@ namespace EntertainmentWebApi.Repository
 
         public List<Movie> GetMovieListByGenreId(int genreId)
         {
-            return   _context.Movies.Where(s => s.Genre.genre_id == genreId).ToList();
+            return   _context.Movies.Where(s => s.Genre.GenreId == genreId).ToList();
         }
 
 
@@ -47,7 +47,7 @@ namespace EntertainmentWebApi.Repository
            return _context.Movies.ToList(); 
            
         }
-        public void Dispose()
+        public  void Dispose()
         {
             _context.Dispose();
         }

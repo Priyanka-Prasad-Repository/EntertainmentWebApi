@@ -1,7 +1,5 @@
 ﻿using EntertainmentWebApi.Model;
 using Microsoft.EntityFrameworkCore;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
-using System.Reflection.Emit;
 
 namespace EntertainmentWebApi
 {
@@ -40,28 +38,28 @@ namespace EntertainmentWebApi
            .WithOne(c => c.Director);
 
             modelBuilder.Entity<Genre>()
-          .HasMany(c => c.Movies)
-          .WithOne(c => c.Genre);
+           .HasMany(c => c.Movies)
+           .WithOne(c => c.Genre);
 
             modelBuilder.Entity<Review>()
             .HasOne(c => c.Movies)
-            .WithMany(c => c.Reviews).HasForeignKey(s=>s.movieId);
+            .WithMany(c => c.Reviews).HasForeignKey(s => s.MovieId);
 
             modelBuilder.Entity<Movie>()
-        .HasOne(c => c.Actor)
-        .WithMany(f => f.Movies).HasForeignKey(s=>s.actor_id).IsRequired();
+           .HasOne(c => c.Actor)
+           .WithMany(f => f.Movies).HasForeignKey(s => s.actorId).IsRequired();
 
             modelBuilder.Entity<Movie>()
-                .HasOne(c => c.Genre)
-                .WithMany(f => f.Movies).HasForeignKey(s => s.genre_id).IsRequired();
+            .HasOne(c => c.Genre)
+            .WithMany(f => f.Movies).HasForeignKey(s => s.GenreId).IsRequired();
 
             modelBuilder.Entity<Movie>()
-                           .HasOne(c => c.Director)
-                           .WithMany(f => f.Movies).HasForeignKey(s => s.director_id).IsRequired();
+            .HasOne(c => c.Director)
+            .WithMany(f => f.Movies).HasForeignKey(s => s.directorId).IsRequired();
 
             modelBuilder.Entity<Movie>()
-                          .HasMany(c => c.Reviews)
-                          .WithOne(f => f.Movies);
+            .HasMany(c => c.Reviews)
+            .WithOne(f => f.Movies);
 
             #endregion
 
@@ -70,21 +68,21 @@ namespace EntertainmentWebApi
 
             modelBuilder.Entity<Actor>().HasData(
             new Actor()
-            { Id = 1, act_name = "Ranbir Kapoor", act_gender = "M" },
+            { Id = 1, ActName = "Ranbir Kapoor", ActGender = "M" },
             new Actor()
-            { Id = 2, act_name = "Alia Bhatt", act_gender = "F" },
+            { Id = 2, ActName = "Alia Bhatt", ActGender = "F" },
               new Actor()
-              { Id = 3, act_name = "Priyanka Chopra", act_gender = "F" },
+              { Id = 3, ActName = "Priyanka Chopra", ActGender = "F" },
             new Actor()
-            { Id = 4, act_name = "Amitabh Bacchan", act_gender = "M" },
+            { Id = 4, ActName = "Amitabh Bacchan", ActGender = "M" },
               new Actor()
-              { Id = 5, act_name = "Ajay Devagan", act_gender = "M" },
+              { Id = 5, ActName = "Ajay Devagan", ActGender = "M" },
              new Actor()
-             { Id = 6, act_name = "Arshad Warsi", act_gender = "M" },
+             { Id = 6, ActName = "Arshad Warsi", ActGender = "M" },
              new Actor()
-             { Id= 7, act_name = "Sharukh Khan", act_gender = "M" },
+             { Id = 7, ActName = "Sharukh Khan", ActGender = "M" },
              new Actor()
-             { Id = 8, act_name = "Pooja Bhatt", act_gender = "F" }
+             { Id = 8, ActName = "Pooja Bhatt", ActGender = "F" }
 
 
            );
@@ -92,67 +90,67 @@ namespace EntertainmentWebApi
 
             modelBuilder.Entity<Director>().HasData(
             new Director()
-            { dir_id = 101, dir_name = "Alia Bhatt" },
+            { DirId = 101, DirName = "Alia Bhatt" },
             new Director()
-            { dir_id = 102, dir_name = "Rohit Shetty" },
+            { DirId = 102, DirName = "Rohit Shetty" },
              new Director()
-             { dir_id = 103, dir_name = "Pooja Bhatt" },
+             { DirId = 103, DirName = "Pooja Bhatt" },
             new Director()
-            { dir_id = 104, dir_name = "Sharukh Khan" },
+            { DirId = 104, DirName = "Sharukh Khan" },
              new Director()
-             { dir_id = 105, dir_name = "NTR" },
+             { DirId = 105, DirName = "NTR" },
               new Director()
-              { dir_id = 106, dir_name = "Karan Johar" });
+              { DirId = 106, DirName = "Karan Johar" });
 
 
             modelBuilder.Entity<Genre>().HasData(
           new Genre()
-          { genre_id = 1001, genre_title = "Horror" },
+          { GenreId = 1001, GenreTitle = "Horror" },
           new Genre()
-          { genre_id = 1002, genre_title = "Sci-Fiction" },
+          { GenreId = 1002, GenreTitle = "Sci-Fiction" },
            new Genre()
-           { genre_id = 1003, genre_title = "Comedy" },
+           { GenreId = 1003, GenreTitle = "Comedy" },
            new Genre()
-           { genre_id = 1004, genre_title = "Drama" });
+           { GenreId = 1004, GenreTitle = "Drama" });
 
-          
+
 
             modelBuilder.Entity<Movie>().HasData(
              new Movie()
              {
-                 mov_id = 801,
-                 mov_lang = "PAN India",
-                 mov_release_country = "Worldwide",
-                 mov_rel_date = DateTime.Now,
-                 mov_title = "Brahmastra",
-                 mov_year = 2024,
-                 actor_id = 2,
-                 director_id = 101,
-                 genre_id = 1002
-                 
+                 MovId = 801,
+                 MovLang = "PAN India",
+                 MovReleaseCountry = "Worldwide",
+                 MovRelDate = DateTime.Now,
+                 MovTitle = "Brahmastra",
+                 MovYear = 2024,
+                 actorId = 2,
+                 directorId = 101,
+                 GenreId = 1002
+
              },
               new Movie()
               {
-                  mov_id = 802,
-                  mov_lang = "PAN India",
-                  mov_release_country = "Worldwide",
-                  mov_rel_date = DateTime.Now,
-                  mov_title = "RRR",
-                  mov_year = 2024,
-                  actor_id = 5,
-                  director_id = 103,
-                  genre_id = 1003
+                  MovId = 802,
+                  MovLang = "PAN India",
+                  MovReleaseCountry = "Worldwide",
+                  MovRelDate = DateTime.Now,
+                  MovTitle = "RRR",
+                  MovYear = 2024,
+                  actorId = 5,
+                  directorId = 103,
+                  GenreId = 1003,
 
               }
              );
 
             modelBuilder.Entity<Review>().HasData(
               new Review()
-              { reviewId = 201, review_Title = "1 star", review_Text = "Rotten tomatotes", movieId = 801 },
+              { ReviewId = 201, ReviewTitle = "1 star", ReviewText = "Rotten tomatotes", MovieId = 801 },
             new Review()
-            { reviewId = 202, review_Title = "1 star", review_Text = "Very Bad movie", movieId = 801 },
+            { ReviewId = 202, ReviewTitle = "1 star", ReviewText = "Very Bad movie", MovieId = 801 },
             new Review()
-            { reviewId = 203, review_Title = "4 star", review_Text = "Fantastic movie", movieId = 801 });
+            { ReviewId = 203, ReviewTitle = "4 star", ReviewText = "Fantastic movie", MovieId = 801 });
 
             #endregion
 

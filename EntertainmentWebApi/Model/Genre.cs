@@ -3,15 +3,15 @@
 namespace EntertainmentWebApi.Model
 {
     /// <summary>
-    /// Model class for Genre
+    /// Model class for genre
     /// </summary>
     public class Genre
     {
         [Key]
-        public int genre_id { get; set; }
+        public int GenreId { get; set; }
         [MaxLength(50)]
-        public string genre_title { get; set; }
+        public required string GenreTitle { get; set; }
 
-        public ICollection<Movie> Movies { get; set; }
+        public ICollection<Movie>? Movies { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
 
 
 namespace EntertainmentWebApi.Model
@@ -11,30 +12,32 @@ namespace EntertainmentWebApi.Model
     {
         [Key]
         [Required]
-        public int mov_id { get; set; }
+        public int MovId { get; set; }
         [MaxLength(100)]
-        public string mov_title { get; set; }
-        public int mov_year { get; set; }
+        public required string MovTitle { get; set; }
+        public int MovYear { get; set; }
         [MaxLength(50)]
-        public string mov_lang { get; set; }
+        public required string MovLang { get; set; }
         [MaxLength(50)]
-        public string mov_release_country { get; set; }
-        public DateTime mov_rel_date { get; set; }
+        public required string MovReleaseCountry { get; set; }
+        public DateTime MovRelDate { get; set; }
 
         [ForeignKey("FK_Movies_Actors_mov_id")]
-        public int actor_id { get; set; }
+        public int actorId { get; set; }
 
         [ForeignKey("FK_Movies_Directors_mov_id")]
-        public int director_id { get; set; }
+        public int directorId { get; set; }
 
         [ForeignKey("FK_Movies_Genres_mov_id")]
-        public int genre_id { get; set; }
+        public int GenreId { get; set; }
 
-
-        public Actor Actor { get; set; }
-        public Genre Genre { get; set; }
-        public Director Director { get; set; }
-
-        public ICollection<Review> Reviews { get; set; }
+       
+        public virtual Actor? Actor { get; set; }
+      
+        public virtual Genre? Genre { get; set; }
+       
+        public virtual Director? Director { get; set; }
+      
+        public virtual ICollection<Review>? Reviews { get; set; }
     }
 }

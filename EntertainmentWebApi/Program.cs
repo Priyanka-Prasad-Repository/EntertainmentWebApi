@@ -1,4 +1,5 @@
 using EntertainmentWebApi;
+using EntertainmentWebApi.BackgroundWorkerService;
 using EntertainmentWebApi.Interfaces;
 using EntertainmentWebApi.Repository;
 using Microsoft.EntityFrameworkCore;
@@ -15,10 +16,15 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
 //Adding db context to connect to sql server
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 //Adding scoped instance for movie repository
 builder.Services.AddScoped<IMovie, MovieRepository>();
+//Adding background worker service
+builder.Services.AddHostedService<WorkerService>();
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

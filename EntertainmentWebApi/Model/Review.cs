@@ -9,13 +9,13 @@ namespace EntertainmentWebApi.Model
     public class Review
     {
         [Key]
-        public int reviewId { get; set; }
-        public string review_Title { get; set; }
-        public string review_Text { get; set; }
+        public int ReviewId { get; set; }
+        public required string ReviewTitle { get; set; }
+        public required string ReviewText { get; set; }
 
 
         [ForeignKey("FK_Movies_Reviews_mov_id")]
-        public int movieId { get; set; }
-        public Movie Movies { get; set; }
+        public int MovieId { get; set; }
+        public Movie? Movies { get; set; }
     }
 }

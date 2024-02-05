@@ -3,17 +3,17 @@
 namespace EntertainmentWebApi.Model
 {
     /// <summary>
-    /// Model class for Director
+    /// Model class for director
     /// </summary>
     public class Director
     {
 
         [Key]
-        public int dir_id { get; set; }
+        public int DirId { get; set; }
 
         [MaxLength(100)]
-        public string dir_name { get; set; }
+        public required string DirName { get; set; }
 
-        public ICollection<Movie> Movies { get; set; }
+        public ICollection<Movie>? Movies { get; set; }
     }
 }

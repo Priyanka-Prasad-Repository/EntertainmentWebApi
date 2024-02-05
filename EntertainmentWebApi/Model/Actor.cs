@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 namespace EntertainmentWebApi.Model
 {
     /// <summary>
-    /// Model class for Actor 
+    /// Model class for actor 
     /// </summary>
     public class Actor
     {
@@ -13,11 +13,11 @@ namespace EntertainmentWebApi.Model
         public int Id { get; set; }
 
         [MaxLength(100)]
-        public string act_name { get; set; }
+        public required string ActName { get; set; }
 
         [MaxLength(2)]
-        public string act_gender { get; set; }
+        public required string ActGender { get; set; }
 
-        public ICollection<Movie> Movies { get; set; }
+        public ICollection<Movie>? Movies { get; set; }
     }
 }

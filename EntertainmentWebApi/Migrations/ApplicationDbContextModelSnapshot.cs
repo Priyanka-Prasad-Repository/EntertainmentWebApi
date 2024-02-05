@@ -30,12 +30,12 @@ namespace EntertainmentWebApi.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("act_gender")
+                    b.Property<string>("ActGender")
                         .IsRequired()
                         .HasMaxLength(2)
                         .HasColumnType("nvarchar(2)");
 
-                    b.Property<string>("act_name")
+                    b.Property<string>("ActName")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
@@ -48,284 +48,284 @@ namespace EntertainmentWebApi.Migrations
                         new
                         {
                             Id = 1,
-                            act_gender = "M",
-                            act_name = "Ranbir Kapoor"
+                            ActGender = "M",
+                            ActName = "Ranbir Kapoor"
                         },
                         new
                         {
                             Id = 2,
-                            act_gender = "F",
-                            act_name = "Alia Bhatt"
+                            ActGender = "F",
+                            ActName = "Alia Bhatt"
                         },
                         new
                         {
                             Id = 3,
-                            act_gender = "F",
-                            act_name = "Priyanka Chopra"
+                            ActGender = "F",
+                            ActName = "Priyanka Chopra"
                         },
                         new
                         {
                             Id = 4,
-                            act_gender = "M",
-                            act_name = "Amitabh Bacchan"
+                            ActGender = "M",
+                            ActName = "Amitabh Bacchan"
                         },
                         new
                         {
                             Id = 5,
-                            act_gender = "M",
-                            act_name = "Ajay Devagan"
+                            ActGender = "M",
+                            ActName = "Ajay Devagan"
                         },
                         new
                         {
                             Id = 6,
-                            act_gender = "M",
-                            act_name = "Arshad Warsi"
+                            ActGender = "M",
+                            ActName = "Arshad Warsi"
                         },
                         new
                         {
                             Id = 7,
-                            act_gender = "M",
-                            act_name = "Sharukh Khan"
+                            ActGender = "M",
+                            ActName = "Sharukh Khan"
                         },
                         new
                         {
                             Id = 8,
-                            act_gender = "F",
-                            act_name = "Pooja Bhatt"
+                            ActGender = "F",
+                            ActName = "Pooja Bhatt"
                         });
                 });
 
             modelBuilder.Entity("EntertainmentWebApi.Model.Director", b =>
                 {
-                    b.Property<int>("dir_id")
+                    b.Property<int>("DirId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("dir_id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DirId"));
 
-                    b.Property<string>("dir_name")
+                    b.Property<string>("DirName")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.HasKey("dir_id");
+                    b.HasKey("DirId");
 
                     b.ToTable("Directors");
 
                     b.HasData(
                         new
                         {
-                            dir_id = 101,
-                            dir_name = "Alia Bhatt"
+                            DirId = 101,
+                            DirName = "Alia Bhatt"
                         },
                         new
                         {
-                            dir_id = 102,
-                            dir_name = "Rohit Shetty"
+                            DirId = 102,
+                            DirName = "Rohit Shetty"
                         },
                         new
                         {
-                            dir_id = 103,
-                            dir_name = "Pooja Bhatt"
+                            DirId = 103,
+                            DirName = "Pooja Bhatt"
                         },
                         new
                         {
-                            dir_id = 104,
-                            dir_name = "Sharukh Khan"
+                            DirId = 104,
+                            DirName = "Sharukh Khan"
                         },
                         new
                         {
-                            dir_id = 105,
-                            dir_name = "NTR"
+                            DirId = 105,
+                            DirName = "NTR"
                         },
                         new
                         {
-                            dir_id = 106,
-                            dir_name = "Karan Johar"
+                            DirId = 106,
+                            DirName = "Karan Johar"
                         });
                 });
 
             modelBuilder.Entity("EntertainmentWebApi.Model.Genre", b =>
                 {
-                    b.Property<int>("genre_id")
+                    b.Property<int>("GenreId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("genre_id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("GenreId"));
 
-                    b.Property<string>("genre_title")
+                    b.Property<string>("GenreTitle")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.HasKey("genre_id");
+                    b.HasKey("GenreId");
 
                     b.ToTable("Genres");
 
                     b.HasData(
                         new
                         {
-                            genre_id = 1001,
-                            genre_title = "Horror"
+                            GenreId = 1001,
+                            GenreTitle = "Horror"
                         },
                         new
                         {
-                            genre_id = 1002,
-                            genre_title = "Sci-Fiction"
+                            GenreId = 1002,
+                            GenreTitle = "Sci-Fiction"
                         },
                         new
                         {
-                            genre_id = 1003,
-                            genre_title = "Comedy"
+                            GenreId = 1003,
+                            GenreTitle = "Comedy"
                         },
                         new
                         {
-                            genre_id = 1004,
-                            genre_title = "Drama"
+                            GenreId = 1004,
+                            GenreTitle = "Drama"
                         });
                 });
 
             modelBuilder.Entity("EntertainmentWebApi.Model.Movie", b =>
                 {
-                    b.Property<int>("mov_id")
+                    b.Property<int>("MovId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("mov_id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MovId"));
 
-                    b.Property<int>("actor_id")
+                    b.Property<int>("GenreId")
                         .HasColumnType("int");
 
-                    b.Property<int>("director_id")
-                        .HasColumnType("int");
-
-                    b.Property<int>("genre_id")
-                        .HasColumnType("int");
-
-                    b.Property<string>("mov_lang")
+                    b.Property<string>("MovLang")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<DateTime>("mov_rel_date")
+                    b.Property<DateTime>("MovRelDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("mov_release_country")
+                    b.Property<string>("MovReleaseCountry")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("mov_title")
+                    b.Property<string>("MovTitle")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int>("mov_year")
+                    b.Property<int>("MovYear")
                         .HasColumnType("int");
 
-                    b.HasKey("mov_id");
+                    b.Property<int>("actorId")
+                        .HasColumnType("int");
 
-                    b.HasIndex("actor_id");
+                    b.Property<int>("directorId")
+                        .HasColumnType("int");
 
-                    b.HasIndex("director_id");
+                    b.HasKey("MovId");
 
-                    b.HasIndex("genre_id");
+                    b.HasIndex("GenreId");
+
+                    b.HasIndex("actorId");
+
+                    b.HasIndex("directorId");
 
                     b.ToTable("Movies");
 
                     b.HasData(
                         new
                         {
-                            mov_id = 801,
-                            actor_id = 2,
-                            director_id = 101,
-                            genre_id = 1002,
-                            mov_lang = "PAN India",
-                            mov_rel_date = new DateTime(2024, 2, 1, 21, 43, 10, 971, DateTimeKind.Local).AddTicks(1047),
-                            mov_release_country = "Worldwide",
-                            mov_title = "Brahmastra",
-                            mov_year = 2024
+                            MovId = 801,
+                            GenreId = 1002,
+                            MovLang = "PAN India",
+                            MovRelDate = new DateTime(2024, 2, 5, 15, 31, 0, 917, DateTimeKind.Local).AddTicks(2813),
+                            MovReleaseCountry = "Worldwide",
+                            MovTitle = "Brahmastra",
+                            MovYear = 2024,
+                            actorId = 2,
+                            directorId = 101
                         },
                         new
                         {
-                            mov_id = 802,
-                            actor_id = 5,
-                            director_id = 103,
-                            genre_id = 1003,
-                            mov_lang = "PAN India",
-                            mov_rel_date = new DateTime(2024, 2, 1, 21, 43, 10, 971, DateTimeKind.Local).AddTicks(1059),
-                            mov_release_country = "Worldwide",
-                            mov_title = "RRR",
-                            mov_year = 2024
+                            MovId = 802,
+                            GenreId = 1003,
+                            MovLang = "PAN India",
+                            MovRelDate = new DateTime(2024, 2, 5, 15, 31, 0, 917, DateTimeKind.Local).AddTicks(2825),
+                            MovReleaseCountry = "Worldwide",
+                            MovTitle = "RRR",
+                            MovYear = 2024,
+                            actorId = 5,
+                            directorId = 103
                         });
                 });
 
             modelBuilder.Entity("EntertainmentWebApi.Model.Review", b =>
                 {
-                    b.Property<int>("reviewId")
+                    b.Property<int>("ReviewId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("reviewId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ReviewId"));
 
-                    b.Property<int>("movieId")
+                    b.Property<int>("MovieId")
                         .HasColumnType("int");
 
-                    b.Property<string>("review_Text")
+                    b.Property<string>("ReviewText")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("review_Title")
+                    b.Property<string>("ReviewTitle")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("reviewId");
+                    b.HasKey("ReviewId");
 
-                    b.HasIndex("movieId");
+                    b.HasIndex("MovieId");
 
                     b.ToTable("Reviews");
 
                     b.HasData(
                         new
                         {
-                            reviewId = 201,
-                            movieId = 801,
-                            review_Text = "Rotten tomatotes",
-                            review_Title = "1 star"
+                            ReviewId = 201,
+                            MovieId = 801,
+                            ReviewText = "Rotten tomatotes",
+                            ReviewTitle = "1 star"
                         },
                         new
                         {
-                            reviewId = 202,
-                            movieId = 801,
-                            review_Text = "Very Bad movie",
-                            review_Title = "1 star"
+                            ReviewId = 202,
+                            MovieId = 801,
+                            ReviewText = "Very Bad movie",
+                            ReviewTitle = "1 star"
                         },
                         new
                         {
-                            reviewId = 203,
-                            movieId = 801,
-                            review_Text = "Fantastic movie",
-                            review_Title = "4 star"
+                            ReviewId = 203,
+                            MovieId = 801,
+                            ReviewText = "Fantastic movie",
+                            ReviewTitle = "4 star"
                         });
                 });
 
             modelBuilder.Entity("EntertainmentWebApi.Model.Movie", b =>
                 {
+                    b.HasOne("EntertainmentWebApi.Model.Genre", "Genre")
+                        .WithMany("Movies")
+                        .HasForeignKey("GenreId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("EntertainmentWebApi.Model.Actor", "Actor")
                         .WithMany("Movies")
-                        .HasForeignKey("actor_id")
+                        .HasForeignKey("actorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("EntertainmentWebApi.Model.Director", "Director")
                         .WithMany("Movies")
-                        .HasForeignKey("director_id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("EntertainmentWebApi.Model.Genre", "Genre")
-                        .WithMany("Movies")
-                        .HasForeignKey("genre_id")
+                        .HasForeignKey("directorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -340,7 +340,7 @@ namespace EntertainmentWebApi.Migrations
                 {
                     b.HasOne("EntertainmentWebApi.Model.Movie", "Movies")
                         .WithMany("Reviews")
-                        .HasForeignKey("movieId")
+                        .HasForeignKey("MovieId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
